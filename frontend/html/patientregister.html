@@ -24,7 +24,8 @@
           <a class="nav-link " href="/">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="/aboutus">About us</a>        </li>
+            <a class="nav-link" href="/aboutus">About us</a>
+                </li>
       </ul>
     </div>
   </nav>
@@ -32,8 +33,8 @@
 
  <!-- Sign up FORM -->
  <div class="bg.img">
- <form action="/api/dctrregister" method="post" class="container">
-    <h2 style="text-align: center;">REGISTRATION FORM</h2>
+ <form action="/api/patientregister" method="post" class="container">
+    <h2 style="text-align: center;"><B>CONSULTANT SIGNUP FORM</h2>
     <div>
         <label >Username:</label>
         <input type="text" name="username">
@@ -43,58 +44,24 @@
         <input type="text" name="email">
     </div><br>
     <div>
-        <label>Password:</label>
+        <label >Password:</label>
         <input type="password" name="password">
     </div><br>
     <div>
-        <label >Specialist in:</label>
-        <select name="specialist">
-            <option value="1">Podiatrist</option>
-        <option value="2">General Practitioner</option>
-          <option value="3">Allergist</option>
-        <option value="4">Anaesthesiologist</option>
-        <option value="5">Cardiologist</option>
-        <option value="6">Dermatologist</option>
-        <option value="7">Endocrinologist</option>
-        <option value="8">Epidemiologist</option>
-        <option value="9">Immunologist</option>
-        <option value="10">Neurologist</option>
-        <option value="11">Neurosurgeon</option>
-        <option value="12">Gynecologist</option>
-        <option value="13">Oncologist</option>
-        <option value="14">Ophthalmologist</option>
-        <option value="15">Otolaryngologist (also ENT Specialist)</option>
-        <option value="16">Physiatrist</option>
-        <option value="17">Plastic Surgeon</option>
-        <option value="18">Radiologist</option>
-        <option value="19">Surgeon</option>
-        <option value="20">Veterinarian</option>
-        <option value="21">Audiologist</option>
-        <option value="22">Homeopathic Doctor</option>
-        <option value="23">Pharmacist</option>
-        <option value="24">Dentist</option>
-           </select>
-    </div><br>
-    <div>
-        <label>Hospital Name:</label>
-        <input type="text" name="hname">
-    </div><br>
-    
-    <div>
-        <label>Hospital Adress:</label>
-        <input type="text" name="hadrs">
-    </div><br>
-    <div>
-        <label >Timings:</label>
-        <input type="text" name="time">
-    </div><br>
-    <div>
-        <label >Consultation fees:</label>
-        <input type="text" name="cfee">
+            <label >Gender:</label>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female" >Female</label>
+            <input type="radio" id="other" name="gender" value="other">
+            <label for="other">Other</label>    
     </div><br>
     <button type="submit" class="btn">Register</button>
-    <p style="text-align: center;"><b>Already have an account?</b> <a href="/doctor/login">Login</a></p>
+    <br>
+    <p style="text-align: center;">Already have an account? <a href="/patient/login">Login</a></p>
+
 </form>
+
 </div>
 <br>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>

@@ -2,6 +2,7 @@ body {font-family: Arial, Helvetica, sans-serif;
     /* background:radial-gradient(#fff,#d3d3d3); */
     text-align:left;
     color:black;
+    background-color: #F8F8F8;
    }
 div.words{float:down; margin-top:2%; margin-left:4%; padding-bottom:2%;}
 img.icon{margin-left:7%;
@@ -37,5 +38,47 @@ button.btn.y{color:white;
          font-weight:bold;
          background:Red;
          outline:none !important;
+         margin-left: 5cm ;
+    }
+    button {
+      border-radius: 4px;
+      background-color: rgb(240, 33, 33);
+      border: none;
+      color: #fff;
+      text-align: center;
+      font-size: 32px;
+      padding: 16px;
+      width: 220px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 36px;
+      box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
     }
     
+    button{
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+    }
+    
+    button:after {
+      content: '»';
+      position: absolute;
+      opacity: 0;  
+      top: 14px;
+      right: -20px;
+      transition: 0.5s;
+    }
+    
+    button:hover{
+      padding-right: 24px;
+      padding-left:8px;
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+
+    }
+    
+    button:hover:after {
+      opacity: 1;
+      right: 10px;
+    }
