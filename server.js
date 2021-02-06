@@ -14,14 +14,19 @@ var userdschema=mongoose.Schema(
       email:String,
       password:String,
       specialist:String,
+      location:String,
       hname:String,
       hadrs:String,
       time:String,
-      cfee:String
+      cfee:String,
+      Appointments:[{
+        userId:{ type: mongoose.Schema.Types.ObjectId, ref: "userpschema" }
+      },],
     }
   );
   var userdmodel=mongoose.model("doctor", userdschema);
   app.post("/api/dctrregister", (req,res)=>{
+    console.log(req.body);
     var userd=userdmodel(req.body);
     userd.save();
     res.redirect("/doctor/login");
@@ -29,8 +34,8 @@ var userdschema=mongoose.Schema(
   app.post("/api/dctrlogin", (req,res)=>{
     userdmodel.find(req.body,(err,userddetails)=>{
       if(userddetails.length>0)
-      res.redirect("/success");
-      else res.redirect("/error");
+      res.redirect("/dashboard");
+      else res.redirect("/doctor/login");
     })
     //res.redirect("/");
   })
@@ -52,7 +57,7 @@ var userdschema=mongoose.Schema(
     userpmodel.find(req.body,(err,userpdetails)=>{
       if(userpdetails.length>0)
       res.redirect("/success");
-      else res.redirect("/error");
+      else res.redirect("/patient/login");
     })
   })
 
@@ -62,6 +67,7 @@ var port= process.env.PORT  || 3000;
 app.get('/', function(req, res){
     res.sendFile(__dirname+'/frontend/html/home.html');
   });
+  
 
   app.get('/doctor/login', function(req, res){
     res.sendFile(__dirname+'/frontend/html/doctorlogin.html');
@@ -77,6 +83,16 @@ app.get('/', function(req, res){
   });
   app.get('/aboutus', function(req, res){
     res.sendFile(__dirname+'/frontend/html/aboutus.html');
+  });
+  app.get('/dashboard', function(req, res){
+    res.sendFile(__dirname+'/frontend/html/dashboard.html');
+  });
+  app.get('/api/filter',function(req,res)
+  {
+    userdmodel.find(req.query, function(err, allDBItems) {
+      console.log(err,allDBItems);
+      res.send({error:err,result:allDBItems});
+  })
   });
   app.listen(port, function(){
     console.log("Site Running on http://localhost:"+port);
