@@ -1,3 +1,9 @@
+  const express = require("express");
+const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const shortid = require("shortid");
+
 router.post("/signup", async(req, res, next) => {
 
     item.getItemByQuery({ email: req.body.email }, User, (err, user) => {
@@ -21,9 +27,8 @@ router.post("/signup", async(req, res, next) => {
                             _id: new mongoose.Types.ObjectId(),
                             email: req.body.email,
                             password: hash,
-                            name: req.body.name,
-                            mobileNumber: req.body.mobileNumber,
-                            isEmailVerified: false,
+                            username: req.body.username,
+                            gender: req.body.gender,
                         };
                         item.createitem(user, User, async(err, result) => {
                             if (err) {
@@ -31,48 +36,17 @@ router.post("/signup", async(req, res, next) => {
                                     error: err,
                                 });
                             } else {
-                                result.verificationKey = shortid.generate();
-                                result.verificationKeyExpires =
-                                    new Date().getTime() + 20 * 60 * 1000;
-                                await result
-                                    .save()
-                                    .then((result1) => {
-                                        const msg = {
-                                            to: result.email,
-                                            from: process.env.sendgridEmail,
-                                            subject: "Quizzie: Email Verification",
-                                            text: " ",
-                                            html: emailTemplates.VERIFY_EMAIL(result1),
-                                        };
-
-                                        sgMail
-                                            .send(msg)
-                                            .then((result) => {
-                                                console.log("Email sent");
-                                            })
-                                            .catch((err) => {
-                                                console.log(err.toString());
-                                                res.status(500).json({
-                                                    // message: "something went wrong1",
-                                                    error: err,
-                                                });
-                                            });
+                              
                                         res.status(201).json({
                                             message: "user created",
                                             userDetails: {
                                                 userId: result._id,
                                                 email: result.email,
-                                                name: result.name,
-                                                mobileNumber: result.mobileNumber,
+                                                username: result.username,
+                                                gender: result.gender,
                                             },
                                         });
-                                    })
-                                    .catch((err) => {
-                                        res.status(400).json({
-                                            message: "Error",
-                                            error: err.toString(),
-                                        });
-                                    });
+                                   
                             }
                         })
                     }
@@ -83,3 +57,88 @@ router.post("/signup", async(req, res, next) => {
     })
 
 });
+router.post("/login", async(req, res, next) => {
+    // if (!req.body.captcha) {
+    //     return res.status(400).json({
+    //         message: "No recaptcha token",
+    //     });
+    // }
+    // var flag = 0;
+    // request(req.verifyURL, (err, response, body) => {
+    //     body = JSON.parse(body);
+    //     console.log(err)
+    //     console.log(body)
+    //     try {
+    //         if (!body.success || body.score < 0.4) {
+    //             flag = 1
+    //             return res.status(401).json({
+    //                 message: "Something went wrong",
+    //             });
+    //         }
+    //         if (err) {
+    //             return res.status(401).json({
+    //                 message: err.toString(),
+    //             });
+    //         }
+    //     } catch (err) {
+    //         return res.status(500).json({
+    //             error: err
+    //         })
+    //     }
+    // });
+    // console.log(flag)
+    item.getItemByQuery({ email: req.body.email }, User, (err, user) => {
+        if (err) {
+            res.status(500).json({
+                error: err,
+            });
+        } else {
+            if (user.length < 1) {
+                return res.status(401).json({
+                    message: "Auth failed: Email not found probably",
+                });
+            }
+            // if (user[0].isEmailVerified === false) {
+            //     return res.status(409).json({
+            //         message: "Please verify your email",
+            //     });
+            // }
+            bcrypt.compare(req.body.password, user[0].password, (err, result) => {
+                if (err) {
+                    return res.status(401).json({
+                        message: "Auth failed",
+                    });
+                }
+                if (result) {
+                    const token = jwt.sign({
+                            userType: user[0].userType,
+                            userId: user[0]._id,
+                            email: user[0].email,
+                            username: user[0].username,
+                            gender: user[0].gender,
+                        },
+                        'process.env.jwtSecret', {
+                            expiresIn: "1d",
+                        }
+                    );
+                    // req.header['auth-token'] = token;
+                    return res.status(200).json({
+                        message: "Auth successful",
+                        userDetails: {
+                            userType: user[0].userType,
+                            userId: user[0]._id,
+                            email: user[0].email,
+                            username: user[0].username,
+                            gender: user[0].gender,
+                        },
+                        token: token,
+                    });
+                }
+                res.status(401).json({
+                    message: "Auth failed1",
+                });
+            });
+        }
+    });
+});
+module.exports = router;

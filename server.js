@@ -7,7 +7,7 @@ var Appointment = require("./backend/models/Appointments");
 mongoose.connect(
   "mongodb+srv://HAnWNJS3Mj7U5oem:pedhu@cluster0.flgd8.mongodb.net/nearbydoctor?retryWrites=true&w=majority",
   {}
-);
+);  
 mongoose.connection.on("open", function () {
   console.log("MongoDB Connected ");
 });

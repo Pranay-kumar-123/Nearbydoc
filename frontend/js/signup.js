@@ -51,7 +51,6 @@ function signup() {
         $.ajax({
             type: "POST",
             url: "/api/user/signup",
-            async: false,
             data: {
                 email: emailid,
                 name: name,
