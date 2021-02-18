@@ -35,27 +35,23 @@
 
  <!-- Sign in FORM -->
  <div class="bg.img">
- <form action="/api/dctrlogin" method="post" class="container">
-    <h2 style="text-align: center;">DOCTOR LOGIN</h2>
+ <div class="container">
+    <h2 style="text-align: center;">VERIFY EMAIL</h2>
+    <h5 style="text-align: center;">A verification mail has been sent to your Email</h5>
    <hr>
     <div>
-        <label >Email:</label>
-        <input type="text" name="email">
+        <label >Verification Code:</label>
+        <input id="sid" type="text" name="code">
     </div><br>
-    <div>
-        <label>Password:</label>
-        <input type="password" name="password">
-    </div><br>
-    
-    <button type="submit" class="btn">Login</button>
+    <p id="sidalert"></p>
+    <button type="submit" onclick="verify()" class="btn">VERIFY</button>
     <br>
-    <p style="text-align: center;color: black; size: 4cm;"><b>Dont have an account? <a href="/ui/doctor/register">register</b></a></p>
-
-</form>
+</div>
 </div>
 <br>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-<script src="/javascripts/signin.js"></script>
+<!-- <script src="/javascripts/site.js"></script> -->
+<script src="/js/verify.js"></script>
 
 </body>
 </html>
