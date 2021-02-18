@@ -13,7 +13,7 @@ function verify() {
     if (c == 1) {
         $.ajax({
             type: "PATCH",
-            url: "/api/doctor/verifyEmail",
+            url: "/api/"+userType+"/verifyEmail",
             async: false,
             data: {
             verificationKey: sid,

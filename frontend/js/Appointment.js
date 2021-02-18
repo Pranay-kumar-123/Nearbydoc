@@ -1,7 +1,7 @@
 
 const userId=location.href.split("/").splice(-1)[0]
 $.ajax({
-    url: "/api/Appointments/"+userId,
+    url: "/apis/Appointments/"+userId,
     method: "GET",
     success: function(result) {
         console.log(result.result);

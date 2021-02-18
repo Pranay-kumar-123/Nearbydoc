@@ -5,6 +5,10 @@ var mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
 
+//mongoose Schemas
+const Doctor = require("./backend/api/models/Doctor");
+const Patient = require("./backend/api/models/patient");
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -57,6 +61,10 @@ app.use((error, req, res, next) => {
       },
   });
 });
+
+//manideep apis----------------------------------
+
+//end--------------------------------------------
 
 app.listen(port, function () {
   console.log("Site Running on http://localhost:" + port);
