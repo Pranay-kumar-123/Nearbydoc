@@ -2,15 +2,16 @@ const express = require("express");
 const router = express.Router();
 
 const doctorRoutes = require("./doctor");
-// const adminRoutes = require("./admin");
-// const quizRoutes = require("./quiz");
-// const questionRoutes = require("./questions");
-// const authRoutes = require("./auth");
-// const authAdminRoutes = require("./auth-admin");
-// const generalRoutes = require("./general");
-// const ownerRoutes = require("./owner");
-// const feedbackRoutes = require("./feedback");
-// const suggestRoutes = require("./suggestion");
+const patient = require("./patient")
+    // const adminRoutes = require("./admin");
+    // const quizRoutes = require("./quiz");
+    // const questionRoutes = require("./questions");
+    // const authRoutes = require("./auth");
+    // const authAdminRoutes = require("./auth-admin");
+    // const generalRoutes = require("./general");
+    // const ownerRoutes = require("./owner");
+    // const feedbackRoutes = require("./feedback");
+    // const suggestRoutes = require("./suggestion");
 
 
 //IMPORT QUIZ AND USERS
@@ -21,6 +22,7 @@ const doctorRoutes = require("./doctor");
 
 
 router.use("/doctor", doctorRoutes);
+router.use("/patient", patient);
 // router.use("/admin", adminRoutes);
 // router.use("/quiz", quizRoutes);
 // router.use("/question", questionRoutes);

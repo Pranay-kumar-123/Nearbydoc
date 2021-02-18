@@ -2,12 +2,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-//const shortid = require("shortid");
-
+const item = require("../lib/itemlib");
+const patient = require("./models/patient")
+const User = require("./models/patient")
 const router = express.Router();
-router.post("/signup", async(req, res, next) => {
 
-    item.getItemByQuery({ email: req.body.email }, User, (err, user) => {
+router.post("/signup", async(req, res, next) => {
+    item.getItemByQuery({ email: req.body.email }, patient, (err, user) => {
         if (err) {
             res.status(500).json({
                 error: err,
@@ -37,18 +38,18 @@ router.post("/signup", async(req, res, next) => {
                                     error: err,
                                 });
                             } else {
-                              
-                                        res.status(201).json({
-                                            message: "user created",
-                                            userDetails: {
-                                                userId: result._id,
-                                                email: result.email,
-                                                username: result.username,
-                                                gender: result.gender,
-                                            },
-                                            
-                                        });
-                                   
+
+                                res.status(201).json({
+                                    message: "user created",
+                                    userDetails: {
+                                        userId: result._id,
+                                        email: result.email,
+                                        username: result.username,
+                                        gender: result.gender,
+                                    },
+
+                                });
+
                             }
                         })
                     }
@@ -59,37 +60,10 @@ router.post("/signup", async(req, res, next) => {
     })
 
 });
+
+
 router.post("/login", async(req, res, next) => {
-    // if (!req.body.captcha) {
-    //     return res.status(400).json({
-    //         message: "No recaptcha token",
-    //     });
-    // }
-    // var flag = 0;
-    // request(req.verifyURL, (err, response, body) => {
-    //     body = JSON.parse(body);
-    //     console.log(err)
-    //     console.log(body)
-    //     try {
-    //         if (!body.success || body.score < 0.4) {
-    //             flag = 1
-    //             return res.status(401).json({
-    //                 message: "Something went wrong",
-    //             });
-    //         }
-    //         if (err) {
-    //             return res.status(401).json({
-    //                 message: err.toString(),
-    //             });
-    //         }
-    //     } catch (err) {
-    //         return res.status(500).json({
-    //             error: err
-    //         })
-    //     }
-    // });
-    // console.log(flag)
-    item.getItemByQuery({ email: req.body.email }, User, (err, user) => {
+    item.getItemByQuery({ email: req.body.email }, patient, (err, user) => {
         if (err) {
             res.status(500).json({
                 error: err,
