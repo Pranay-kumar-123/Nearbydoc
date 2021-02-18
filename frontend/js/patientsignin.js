@@ -30,7 +30,7 @@ function login() {
     if (c == 2) {
         $.ajax({
             type: "POST",
-            url: "/api/doctor/login",
+            url: "/api/patient/login",
             data: {
                 email: emailid,
                 password: password
@@ -42,6 +42,7 @@ function login() {
                     localStorage.username = resultData.userDetails.name
                     localStorage.usertype = resultData.userDetails.userType
                     window.location.href = '/ui/dashboard';
+                    
                 }
             }, //sucess
             error: function(error) {

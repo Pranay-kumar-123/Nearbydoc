@@ -152,11 +152,11 @@ router.post("/login", async(req, res, next) => {
                     message: "Auth failed: Email not found probably",
                 });
             }
-            // if (user[0].isEmailVerified === false) {
-            //     return res.status(409).json({
-            //         message: "Please verify your email",
-            //     });
-            // }
+            if (user[0].isEmailVerified === false) {
+                 return res.status(409).json({
+                     message: "Please verify your email",
+                 });
+             }
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if (err) {
                     return res.status(401).json({

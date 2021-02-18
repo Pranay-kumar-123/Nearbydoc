@@ -32,29 +32,32 @@
     </nav>
   </div>
   
+
+ <!-- Sign in FORM -->
  <div class="bg.img">
- <form action="/api/patientlogin" method="post" class="container">
-    <h2 style="text-align: center;" >CONSULTANT-LOGIN </h2>
-    <hr>
-   
+ <div class="container">
+    <h2 style="text-align: center;">CONSULTANT LOGIN</h2>
+   <hr>
     <div>
-        <label>Email:</label>
-        <input type="text" name="email">
+        <label >Email:</label>
+        <input id="email" type="text" name="email">
     </div><br>
+    <p id="emailalert"></p>
     <div>
         <label>Password:</label>
-        <input type="password" name="password">
+        <input id="pass" type="password" name="password">
     </div><br>
+    <p id="passwordalert"></p>
     
-    <button type="submit" class="btn">Login</button>
+    <button type="submit" onclick="login()" class="btn">Login</button>
     <br>
-    <p style="text-align: center;color: black; size: 4cm;"><b>Dont have an account? <a href="/patient/register">register</b></a></p>
+    <p style="text-align: center;color: black; size: 4cm;"><b>Dont have an account? <a href="/ui/patient/register">register</b></a></p>
 
-</form>
+  </div>
 </div>
 <br>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-<!-- <script src="/javascripts/site.js"></script> -->
+<script src="/js/signin.js"></script>
 
 </body>
 </html>
