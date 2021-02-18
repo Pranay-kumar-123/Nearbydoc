@@ -4,7 +4,10 @@ const item = require("../lib/itemlib");
 const Doctor = require("./models/Doctor");
 const Patient = require("./models/patient");
 const Appointment = require("./models/Appointments");
+const sgMail = require("@sendgrid/mail");
+const emailTemplates = require("../email");
 
+sgMail.setApiKey(process.env.SendgridAPIKey);
 const app = express.Router();
 
 app.get("/Appointments/:id", (req, res) => {
@@ -62,9 +65,28 @@ app.get("/Appointments/:id", (req, res) => {
       },
       (err, itemDetails) => {
         if (err) console.log("ERROR: " + err);
-        console.log(itemDetails);
+        //console.log(itemDetails);
       }
     );
+    item.getItemByQuery({ _id: req.body.doctorId}, Doctor, (err, result)=> {
+      //console.log("Appointment Query")        
+      //console.log(result[0].email);
+     
+               const msg = {
+                   to: result[0].email,
+                   from: process.env.sendgridEmail,
+                   subject: "NEAR_BY_Doctor: Appointment",
+                   text: " ",
+                   html: emailTemplates.APPOINTMENT_EMAIL(result),
+                };
+
+               sgMail
+               .send(msg)
+               .then((result) => {
+                   console.log("Email sent");
+               })
+      });
+
     Doctor.findOneAndUpdate(
       { _id: req.body.doctorId },
       { $push: { Appointments: { AppointmentId } } },

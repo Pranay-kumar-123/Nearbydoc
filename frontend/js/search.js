@@ -53,7 +53,7 @@ function bookap()
     data={"doctorId":doctorId,date:$("#date").val(),time:$("#time").val(),"doctorName":doctorName};
     console.log(data)
     $.ajax({
-        url: "/api/other/createAppointment/602e031caa9a9a441030501b",
+        url: "/api/other/createAppointment/602e741de4b6ee2b5c818ac1",
         method: "POST",
         data:data,
         success: function(result) {
