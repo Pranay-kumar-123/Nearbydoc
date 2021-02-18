@@ -1,9 +1,10 @@
-  const express = require("express");
+const express = require("express");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const shortid = require("shortid");
+//const shortid = require("shortid");
 
+const router = express.Router();
 router.post("/signup", async(req, res, next) => {
 
     item.getItemByQuery({ email: req.body.email }, User, (err, user) => {
@@ -141,4 +142,5 @@ router.post("/login", async(req, res, next) => {
         }
     });
 });
+
 module.exports = router;

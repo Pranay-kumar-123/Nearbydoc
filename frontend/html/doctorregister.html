@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"  crossorigin="anonymous" />
 </head>
 <body>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
   <div class="menu-bar">
@@ -35,27 +35,32 @@
 
  <!-- Sign up FORM -->
  <div class="bg.img">
- <form action="/api/dctrregister" method="post" class="container">
+ <div class="container">
     <h2 style="text-align: center;">DOCTOR SIGNUP FORM</h2>
     <hr>
     <div>
         <label >Username:</label>
-        <input type="text" name="username">
-    </div><br>
+        <input class="form" type="text" name="username">
+    </div>
+    <p id="namealert"></p>
+    <br>
     <div>
         <label >Email:</label>
-        <input type="text" name="email">
-    </div><br>
+        <input class="form" type="text" name="email">
+    </div>
+    <p id="emailalert"></p>
+    <br>
     <div>
         <label>Password:</label>
-        <input type="password" name="password">
-    </div><br>
+        <input class="form" type="password" name="password">
+    </div>
+    <p id="passwordalert"></p><br>
     <div>
-        <label >Specialist in:</label>
-        <select name="specialist">
-            <option value="1">Podiatrist</option>
+        <label>Specialist in:</label>
+        <select id="slist" name="specialist">
+        <option value="1">Podiatrist</option>
         <option value="2">General Practitioner</option>
-          <option value="3">Allergist</option>
+        <option value="3">Allergist</option>
         <option value="4">Anaesthesiologist</option>
         <option value="5">Cardiologist</option>
         <option value="6">Dermatologist</option>
@@ -80,8 +85,8 @@
            </select>
     </div><br>
     <div class="col">
-      <label >Location:</label>
-      <select  id="location" class="form-select" name="location">
+      <label>Location:</label>
+      <select  id="loc" class="form-select" name="location">
           <option value="Medchal">Medchal</option>
           <option value="Kompally">Kompally</option>
           <option value="Suchitra">Suchitra</option>
@@ -107,29 +112,30 @@
   </div>
     <div>
         <label>Hospital Name:</label>
-        <input type="text" name="hname">
+        <input class="form" type="text" name="hname">
     </div><br>
     
     <div>
         <label>Hospital Adress:</label>
-        <input type="text" name="hadrs">
+        <input class="form" type="text" name="hadrs">
     </div><br>
     <div>
         <label >Timings:</label>
-        <input type="text" name="time">
+        <input class="form" type="text" name="time">
     </div><br>
     <div>
         <label >Consultation fees:</label>
-        <input type="text" name="cfee">
+        <input class="form" type="text" name="cfee">
     </div><br>
-    <button type="submit" class="btn">Register</button>
+    <button type="submit" class="btn" onclick="signup()">Register</button>
     <br>
     <p style="text-align: center;"><b>Already have an account?</b> <a href="/doctor/login">Login</a></p>
-</form>
+  </div>
 </div>
 <br>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-<script src="/javascripts/site.js"></script>
+<script src="/js/signup.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </body>
 </html>

@@ -6,21 +6,20 @@ function signup() {
         else return true;
     }
 
-    //Phone Number verfication
-    function IsPhoneno(phoneno) {
-        var regex = /^([7-9][0-9]{9})$/g;
-        if (!regex.test(phoneno)) return false;
-        else return true;
-    }
 
-    var emailid = String(document.getElementsByClassName("form-control")[0].value);
-    var phoneno = String(document.getElementsByClassName("form-control")[2].value);
-    var password = String(document.getElementsByClassName("form-control")[3].value);
-    var name = String(document.getElementsByClassName("form-control")[1].value);
+    var name = String(document.getElementsByClassName("form")[0].value);
+    var emailid = String(document.getElementsByClassName("form")[1].value);
+    var password = String(document.getElementsByClassName("form")[2].value);
+    var hpname= String(document.getElementsByClassName("form")[3].value);
+    var hpadd= String(document.getElementsByClassName("form")[4].value);
+    var timing =String(document.getElementsByClassName("form")[5].value);
+    var fee=  String(document.getElementsByClassName("form")[6].value);
+    var spec= document.getElementById("slist").value;
+    var loc= document.getElementById("loc").value;
 
 
-    console.log(emailid,phoneno,password,name);
-    var c = 4;
+    console.log(name,emailid,password,spec,hpname,hpadd,loc,timing,fee);
+    var c = 9;
     
     if (name == "") {
         document.getElementById("namealert").innerHTML = `Please Enter the name!`;
@@ -35,33 +34,35 @@ function signup() {
         c--;
     } else document.getElementById("passwordalert").innerHTML = ``;
 
-    if (c == 4) {
+    if (c == 9) {
         if (!IsEmail(emailid)) {
             document.getElementById("emailalert").innerHTML = `Invalid Email!`;
             c--;
         } else document.getElementById("emailalert").innerHTML = ``;
-        if (!IsPhoneno(phoneno) && phoneno != "") {
-            document.getElementById("phonealert").innerHTML = `Invalid PhoneNo.`;
-            c--;
-        } else document.getElementById("phonealert").innerHTML = ``;
     }
     
+    console.log(c)
     //ajax call to create an instance to the user in database
-    if (c == 4) {
+    if (c == 9) {
         $.ajax({
             type: "POST",
-            url: "/api/user/signup",
+            url: "/api/doctor/signup",
             data: {
+                username:name,
+                specialist: spec,
+                location: loc,
+                hname: hpname,
+                hadrs: hpadd,
+                time: timing,
+                cfee: fee,
                 email: emailid,
-                name: name,
-                mobileNumber: phoneno,
                 password: password
             },
             success: function(resultData) {
                 if (resultData.message == "Email already exists")
                     document.getElementById("emailalert").innerHTML = `This email already has an account`;
                 if (resultData.message == "user created") {
-                    window.location.href = '/login';
+                    window.location.href = '/ui/verify';
                 }
             }, //sucess
             error: function(resultData) {
