@@ -6,11 +6,17 @@ var currentDate = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice
 var currentTime = ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2) + ":" + ('0' + date.getSeconds()).slice(-2);
 $('#date').val(currentDate);
 $('#time').val(currentTime);
+
+
 $.ajax({
+<<<<<<< HEAD
     url: "/apis/filter?specialist="+specialist+"&location="+locate,
+=======
+    url: "/api/other/filter/"+specialist+"/"+locate,
+>>>>>>> 670c32a8e8616bfcc35df775aed87d4785811519
     method: "GET",
     success: function(result) {
-        console.log(result.result);
+        //console.log(JSON.stringify(result.result));
         doctorlist=result.result;
         code=`<table class="table">
         <thead>
@@ -36,26 +42,31 @@ $.ajax({
         $("#doctors").html(code);
     },
     error: function(err) {
-        console.log(err);
+        console.log("Error");
        // alert("Please Enter Valid Question") //change this url ....
     }
 });
 function assign(index)
-{
-    console.log(index,doctorlist[index]);
+{   //console.log(doctorlist)
+    //console.log(index,doctorlist[index]);
     doctorId=doctorlist[index]._id;
     doctorName=doctorlist[index].username;
 }
 function bookap()
 {
     data={"doctorId":doctorId,date:$("#date").val(),time:$("#time").val(),"doctorName":doctorName};
+    console.log(data)
     $.ajax({
+<<<<<<< HEAD
         url: "/apis/createAppointment",
+=======
+        url: "/api/other/createAppointment/602e741de4b6ee2b5c818ac1",
+>>>>>>> 670c32a8e8616bfcc35df775aed87d4785811519
         method: "POST",
         data:data,
         success: function(result) {
             console.log(result);
-            location.href="/dashboard"
+            location.href="/ui/dashboard"
         },
         error: function(err) {
             console.log(err);

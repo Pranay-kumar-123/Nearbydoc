@@ -1,7 +1,7 @@
 function login() {
     //Email verification
     function IsEmail(email) {
-        var regex = /[a-z0-9!#$%&'+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'+/=?^_`{|}~-]+)@(?:[a-z0-9](?:[a-z0-9-][a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+        var regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
         if (!regex.test(email)) return false;
         else return true;
     }
@@ -19,18 +19,18 @@ function login() {
         c--;
     } else document.getElementById("passwordalert").innerHTML = ``;
 
-    // if (c == 2) {
-    //     if (!IsEmail(emailid)) {
-    //         document.getElementById("emailalert").innerHTML = `Invalid Email!`;
-    //         c--;
-    //     } else document.getElementById("emailalert").innerHTML = ``;
-    // }
+    if (c == 2) {
+        if (!IsEmail(emailid)) {
+            document.getElementById("emailalert").innerHTML = `Invalid Email!`;
+            c--;
+        } else document.getElementById("emailalert").innerHTML = ``;
+    }
 
     //ajax call to create an instance to the user in database
     if (c == 2) {
         $.ajax({
             type: "POST",
-            url: "/api/doctor/login",
+            url: "/api/patient/login",
             data: {
                 email: emailid,
                 password: password
@@ -41,11 +41,8 @@ function login() {
                     localStorage.userid = resultData.userDetails.userId
                     localStorage.username = resultData.userDetails.name
                     localStorage.usertype = resultData.userDetails.userType
-<<<<<<< HEAD
-                    window.location.href = '/dashboard';
-=======
                     window.location.href = '/ui/dashboard';
->>>>>>> 670c32a8e8616bfcc35df775aed87d4785811519
+                    
                 }
             }, //sucess
             error: function(error) {
@@ -61,4 +58,4 @@ function login() {
         });
     }
 
-} 
+} //End of login function

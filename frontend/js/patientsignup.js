@@ -7,19 +7,15 @@ function signup() {
     }
 
 
-    var name = String(document.getElementsByClassName("form")[0].value);
-    var emailid = String(document.getElementsByClassName("form")[1].value);
-    var password = String(document.getElementsByClassName("form")[2].value);
-    var hpname= String(document.getElementsByClassName("form")[3].value);
-    var hpadd= String(document.getElementsByClassName("form")[4].value);
-    var timing =String(document.getElementsByClassName("form")[5].value);
-    var fee=  String(document.getElementsByClassName("form")[6].value);
-    var spec= document.getElementById("slist").value;
-    var loc= document.getElementById("loc").value;
+    var name = String(document.getElementById("name").value);
+    var emailid = String(document.getElementById("mail").value);
+    var password = String(document.getElementById("password").value);
+    var gen= String(document.getElementById("gender").value);
+   
 
 
-    console.log(name,emailid,password,spec,hpname,hpadd,loc,timing,fee);
-    var c = 9;
+    console.log(name,emailid,password,gen);
+    var c = 4;
     
     if (name == "") {
         document.getElementById("namealert").innerHTML = `Please Enter the name!`;
@@ -34,7 +30,7 @@ function signup() {
         c--;
     } else document.getElementById("passwordalert").innerHTML = ``;
 
-    if (c == 9) {
+    if (c == 4) {
         if (!IsEmail(emailid)) {
             document.getElementById("emailalert").innerHTML = `Invalid Email!`;
             c--;
@@ -43,30 +39,22 @@ function signup() {
     
     console.log(c)
     //ajax call to create an instance to the user in database
-    if (c == 9) {
+    if (c == 4) {
         $.ajax({
             type: "POST",
-            url: "/api/doctor/signup",
+            url: "/api/patient/signup",
             data: {
                 username:name,
-                specialist: spec,
-                location: loc,
-                hname: hpname,
-                hadrs: hpadd,
-                time: timing,
-                cfee: fee,
                 email: emailid,
-                password: password
+                gender : gen,
+                password: password,
+
             },
             success: function(resultData) {
                 if (resultData.message == "Email already exists")
                     document.getElementById("emailalert").innerHTML = `This email already has an account`;
                 if (resultData.message == "user created") {
-<<<<<<< HEAD
-                    window.location.href = '/verify';
-=======
-                    window.location.href = '/ui/verify/doctor';
->>>>>>> 670c32a8e8616bfcc35df775aed87d4785811519
+                    window.location.href = '/ui/verify/patient';
                 }
             }, //sucess
             error: function(resultData) {

@@ -36,40 +36,48 @@
 
  <!-- Sign up FORM -->
  <div class="bg.img">
+<<<<<<< HEAD
  <form action="/api/patient/register" method="post" class="container">
+=======
+ <div class="container">
+>>>>>>> 670c32a8e8616bfcc35df775aed87d4785811519
     <h2 style="text-align: center;">CONSULTANT SIGNUP FORM</h2>
     <hr>
     <div>
         <label >Username:</label>
-        <input type="text" name="username">
+        <input id="name" type="text" name="username">
     </div><br>
+    <p id="namealert"></p>
     <div>
         <label >Email:</label>
-        <input type="text" name="email">
+        <input id="mail" type="text" name="email">
     </div><br>
+    <p id="emailalert"></p>
     <div>
         <label >Password:</label>
-        <input type="password" name="password">
+        <input id="password" type="password" name="password">
     </div><br>
+    <p id="passwordalert"></p>
     <div>
             <label >Gender:</label>
-            <input type="radio" id="male" name="gender" value="male">
+            <input id="gender" type="radio" id="male" name="gender" value="male">
             <label for="male">Male</label>
             <input type="radio" id="female" name="gender" value="female">
             <label for="female" >Female</label>
             <input type="radio" id="other" name="gender" value="other">
             <label for="other">Other</label>    
     </div><br>
-    <button type="submit" class="btn">Register</button>
+
+    <button type="submit" onclick="signup()"class="btn">Register</button>
     <br>
     <p style="text-align: center;">Already have an account? <a href="/patient/login">Login</a></p>
 
-</form>
+  </div>
 
 </div>
 <br>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-<!-- <script src="/javascripts/site.js"></script> -->
+<script src="/js/patientsignup.js"></script>
 
 </body>
 </html>

@@ -5,6 +5,10 @@ var mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
 
+//mongoose Schemas
+const Doctor = require("./backend/api/models/Doctor");
+const Patient = require("./backend/api/models/patient");
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -94,6 +98,7 @@ app.use((error, req, res, next) => {
   });
 });
 
+<<<<<<< HEAD
 //past apis
 //----------------------------------------------------------------------------------------------------------------------------------------
 // app.get("/api/patientregister",(req,re))
@@ -166,6 +171,11 @@ app.post("/apis/createAppointment", function (req, res, next) {
 });
 //past apis
 //-------------------------------------------------------------------------------------------------------
+=======
+//manideep apis----------------------------------
+
+//end--------------------------------------------
+>>>>>>> 670c32a8e8616bfcc35df775aed87d4785811519
 
 app.listen(port, function () {
   console.log("Site Running on http://localhost:" + port);

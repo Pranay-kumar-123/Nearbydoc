@@ -16,6 +16,10 @@ var userpschema=mongoose.Schema(
         date:String,
         time:String
       },],
+      verificationKey: { type: String },
+      verificationKeyExpires: { type: Number },
+      isEmailVerified: { type: Boolean, default: false },
+      isDeleted: { type: Boolean, default: false }
     }
   );
 

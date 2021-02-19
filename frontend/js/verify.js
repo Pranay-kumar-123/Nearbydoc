@@ -13,7 +13,7 @@ function verify() {
     if (c == 1) {
         $.ajax({
             type: "PATCH",
-            url: "/api/doctor/verifyEmail",
+            url: "/api/"+userType+"/verifyEmail",
             async: false,
             data: {
             verificationKey: sid,
@@ -21,9 +21,15 @@ function verify() {
             success: function(resultData) {
                 //console.log(JSON.stringify(resultData))
                 if (resultData.message == "User verified") {
+<<<<<<< HEAD
                     //if(userType=="user")
                     window.location.href = '/doctor/login';
                     //else window.location.href = '/ui/login/organizer';
+=======
+                    if(userType=="doctor")
+                    window.location.href = '/ui/doctor/login';
+                    else window.location.href = '/ui/patient/login';
+>>>>>>> 670c32a8e8616bfcc35df775aed87d4785811519
                 }
             }, //sucess
             error: function(resultData) {

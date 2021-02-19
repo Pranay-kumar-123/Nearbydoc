@@ -6,7 +6,7 @@ app.get("/", function (req, res) {
   res.sendFile("C:\Users\vorug\Desktop\Nearbydoc/frontend/html/home.html");
   });
 
-app.get("/verify", function (req, res) {
+app.get("/verify/:userType", function (req, res) {
     res.sendFile("/Nearbydoc/frontend/html/verify.html");
     });
   
