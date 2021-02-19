@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 
 app.get("/", function (req, res) {
-  res.sendFile("/Nearbydoc/frontend/html/home.html");
+  console.log(__dirname);
+  res.sendFile("C:\Users\vorug\Desktop\Nearbydoc/frontend/html/home.html");
   });
 
 app.get("/verify", function (req, res) {
@@ -10,10 +11,10 @@ app.get("/verify", function (req, res) {
     });
   
 app.get("/doctor/login", function (req, res) {
-    res.sendFile("/Nearbydoc/frontend/html/doctorlogin.html");
+    res.sendFile(__dirname+"/frontend/html/doctorlogin.html");
   });
 
-app.get("/search/:specialist/:location", function (req, res) {
+app.get("/search/:specialist/:location", function (req, res){
     res.sendFile("/Nearbydoc/frontend/html/search.html");
   });
 

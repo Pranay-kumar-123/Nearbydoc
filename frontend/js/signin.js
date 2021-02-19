@@ -1,13 +1,13 @@
 function login() {
     //Email verification
     function IsEmail(email) {
-        var regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+        var regex = /[a-z0-9!#$%&'+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'+/=?^_`{|}~-]+)@(?:[a-z0-9](?:[a-z0-9-][a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
         if (!regex.test(email)) return false;
         else return true;
     }
 
-    var emailid = String(document.getElementsByClassName("form-control")[0].value);
-    var password = String(document.getElementsByClassName("form-control")[1].value);
+    var emailid = String(document.getElementById("email").value);
+    var password = String(document.getElementById("pass").value);
     // alert(emailid+phoneno+password+name);
     var c = 2;
     if (emailid == "") {
@@ -19,18 +19,18 @@ function login() {
         c--;
     } else document.getElementById("passwordalert").innerHTML = ``;
 
-    if (c == 2) {
-        if (!IsEmail(emailid)) {
-            document.getElementById("emailalert").innerHTML = `Invalid Email!`;
-            c--;
-        } else document.getElementById("emailalert").innerHTML = ``;
-    }
+    // if (c == 2) {
+    //     if (!IsEmail(emailid)) {
+    //         document.getElementById("emailalert").innerHTML = `Invalid Email!`;
+    //         c--;
+    //     } else document.getElementById("emailalert").innerHTML = ``;
+    // }
 
     //ajax call to create an instance to the user in database
     if (c == 2) {
         $.ajax({
             type: "POST",
-            url: "/api/user/login",
+            url: "/api/doctor/login",
             data: {
                 email: emailid,
                 password: password
@@ -41,7 +41,7 @@ function login() {
                     localStorage.userid = resultData.userDetails.userId
                     localStorage.username = resultData.userDetails.name
                     localStorage.usertype = resultData.userDetails.userType
-                    window.location.href = '/#';
+                    window.location.href = '/dashboard';
                 }
             }, //sucess
             error: function(error) {
@@ -57,4 +57,4 @@ function login() {
         });
     }
 
-} //End of login function
+} 

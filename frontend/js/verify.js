@@ -22,7 +22,7 @@ function verify() {
                 //console.log(JSON.stringify(resultData))
                 if (resultData.message == "User verified") {
                     //if(userType=="user")
-                    window.location.href = '/ui/doctor/login';
+                    window.location.href = '/doctor/login';
                     //else window.location.href = '/ui/login/organizer';
                 }
             }, //sucess

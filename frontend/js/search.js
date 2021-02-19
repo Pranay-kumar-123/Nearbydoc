@@ -7,7 +7,7 @@ var currentTime = ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinut
 $('#date').val(currentDate);
 $('#time').val(currentTime);
 $.ajax({
-    url: "/api/filter?specialist="+specialist+"&location="+locate,
+    url: "/apis/filter?specialist="+specialist+"&location="+locate,
     method: "GET",
     success: function(result) {
         console.log(result.result);
@@ -50,7 +50,7 @@ function bookap()
 {
     data={"doctorId":doctorId,date:$("#date").val(),time:$("#time").val(),"doctorName":doctorName};
     $.ajax({
-        url: "/api/createAppointment",
+        url: "/apis/createAppointment",
         method: "POST",
         data:data,
         success: function(result) {

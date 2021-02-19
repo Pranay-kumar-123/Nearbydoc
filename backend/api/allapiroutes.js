@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const doctorRoutes = require("./doctor");
+
+const patient = require("./patient");
+
 // const adminRoutes = require("./admin");
 // const quizRoutes = require("./quiz");
 // const questionRoutes = require("./questions");
@@ -21,6 +24,7 @@ const doctorRoutes = require("./doctor");
 
 
 router.use("/doctor", doctorRoutes);
+router.use("/patient",patient)
 // router.use("/admin", adminRoutes);
 // router.use("/quiz", quizRoutes);
 // router.use("/question", questionRoutes);

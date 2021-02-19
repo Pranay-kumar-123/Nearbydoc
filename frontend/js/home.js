@@ -3,8 +3,8 @@ function mylogin() {
     <div id="myModal" class="modal-dialog.modal-dialog-centered">
     <div id="content" class="modal-content" style="background:azure">
     <div><b class="dia">Are you a Doctor or a Patient?</b><br/>
-    <a href="/ui/doctor/login"><button class="btns" type="button" style="color:white; margin-right:6%;">DOCTOR</button></a>
-    <a href="/ui/patient/login"><button class="btno" type="button" style="color:white;">PATIENT</button></a>
+    <a href="/doctor/login"><button class="btns" type="button" style="color:white; margin-right:6%;">DOCTOR</button></a>
+    <a href="/patient/login"><button class="btno" type="button" style="color:white;">PATIENT</button></a>
     </div>
     </div>`
 
