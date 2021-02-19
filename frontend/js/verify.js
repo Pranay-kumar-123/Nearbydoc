@@ -21,9 +21,9 @@ function verify() {
             success: function(resultData) {
                 //console.log(JSON.stringify(resultData))
                 if (resultData.message == "User verified") {
-                    //if(userType=="user")
+                    if(userType=="doctor")
                     window.location.href = '/ui/doctor/login';
-                    //else window.location.href = '/ui/login/organizer';
+                    else window.location.href = '/ui/patient/login';
                 }
             }, //sucess
             error: function(resultData) {
